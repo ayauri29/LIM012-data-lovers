@@ -509,10 +509,10 @@ a {
   text-decoration: none;
 }
 a:link {
-  color: #212121;
+  color: #eaa33f;
 }
 a:visited {
-  color: #eaa33f;
+  color: black;
 }
 
 .menu-mobile {
@@ -558,6 +558,12 @@ nav.open {
 /*Algo estilo a los item del menu*/
 nav li {
     padding: 1em;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+nav li:hover{
+  background-color: #ff980085;
 }
 nav li a {
     text-align: center;
@@ -565,9 +571,12 @@ nav li a {
     color: #424242;
 }
 
+
+
 .large-icon{
   font-size: 30px !important;
   margin-right: 1em;
+  color: #db9038
 }
 
 .container-menu, .container-menu .blanco, .container-menu img{
@@ -594,7 +603,7 @@ video{
 }
 
 .home-screen h1{
-  font-size: 35px;
+  font-size: 30px;
   width: 68%;
   background-color: #1d1f1fa6;
   margin-top: 5%;
@@ -694,6 +703,7 @@ footer img{
 
   .home-screen h1{
     margin-top: 0%;
+    font-size: 35px;
   }
 
   .container-table {

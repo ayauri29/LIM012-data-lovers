@@ -14,7 +14,7 @@ const championsScreen = document.getElementById('champions-screen');
 const statisticsScreen = document.getElementById('final-screen');
 /* Other containers */
 const containerHero = document.getElementById('container-hero');
-const championSelect = document.getElementById('champions');
+const championSelect = document.getElementById('champions-select');
 const orderSelect = document.getElementById('order');
 const searchInput = document.getElementById('search-name');
 const totalContainer = document.getElementById('total-container');
