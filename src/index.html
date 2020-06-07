@@ -1,12 +1,102 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Data Lovers</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script src="main.js" type="module"></script>
-  </body>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>League of legends</title>
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
+<body>
+	<div class="oscurecer"></div>
+	<!--Zona visible al usuario con ícono-->
+	<header class="menu-mobile">
+		<div class="container-menu">
+			<div class="blanco">
+				<img src="../images/logo.png" alt="Logo LOL" />
+			</div>
+		</div>
+		<div class="search-field">
+			<!-- <span class="fa fa-search form-control-feedback"></span> -->
+			<input type="text" id="search-name" class="search-text hide" name="" placeholder="Buscar por nombre">
+		</div>
+		<a href="#" id="menu">
+			<i class="fa fa-bars large-icon" aria-hidden="true"></i>
+		</a>
+		<nav id="navigation">
+			<li><a href="#" id="home">Inicio</a></li>
+			<li><a href="#" id="champions">Champions</a></li>
+			<li><a href="#" id="final">Statistics</a></li>
+		</nav>
+	</header>
+	<section id="home-screen" class="home-screen">
+		<div class="main-content">
+			<video autoplay muted loop id="myVideo">
+				<source src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/harbinger-l10-website/es-es/production/es-es/static/hero-0632cbf2872c5cc0dffa93d2ae8a29e8.webm" type="video/mp4">
+			</video>
+			<div class="content">
+				<h1>¿QUÉ ES LEAGUE OF LEGENDS?</h1>
+				<p>
+					League of Legends es un juego de estrategia por equipos en el que dos equipos de cinco campeones se enfrentan para ver quién destruye antes la base del otro. Elige de entre un elenco de 140 campeones para realizar jugadas épicas, asesinar rivales y derribar torretas para alzarte con la victoria.</h1>
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="champions-screen" class="hide">
+		<div class="container-filters">
+			<button id="up" class="hide">^</button>
+			<div class="filters">
+				<select class="select" name="champions" id="champions">
+					<option value="" selected disabled>Select type</option>
+					<option value="Fighter">Fighter</option>
+					<option value="Tank">Tank</option>
+					<option value="Mage">Mage</option>
+					<option value="Assassin">Assassin</option>
+					<option value="Marksman">Marksman</option>
+					<option value="Support">Support</option>
+					<option value="All">All types</option>
+				</select>
+				<select class="select" name="order" id="order">
+					<option value="" selected disabled>Select order</option>
+					<option value="asc">A-Z</option>
+					<option value="des">Z-A</option>
+				</select>
+			</div>
+			<div id="total-container" class="total-container"></div>
+		</div>
+		<div class="root" id="root">
+			<p id="container-hero" class="container-hero"></p>
+		</div>
+		<div id="myModal" class="modal hide">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<div id="modal-content"></div>
+			</div>
+		</div>
+	</section>
+	<section id="final-screen" class="hide">
+		<div class="buttons" id="buttons">
+			<button id="attack">Attack</button>
+			<button id="difficulty">Difficulty</button>
+			<button id="magic">Mage</button>
+			<button id="defense">Defense</button>
+		</div>
+		<div id="chart"></div>
+	</section>
+	<footer id="footer" class="">
+		<p>Copyright &#169;2020 Alba Yauri. All Rights Reserved.</p>
+		<a href="https://play.google.com/store/apps/details?id=com.riotgames.mobile.leagueconnect&hl=es">
+			<img src="../images/playstore.png" />
+		</a>
+  </footer>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="main.js" type="module"></script>
+</body>
+
 </html>
