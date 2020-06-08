@@ -238,6 +238,8 @@ select {
   float: right;
   font-size: 28px;
   font-weight: bold;
+  background-color: #db9038;
+  margin: 2%;
 }
 
 .close:hover, .close:focus {
