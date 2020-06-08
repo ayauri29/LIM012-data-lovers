@@ -88,7 +88,7 @@ const fillTable = (obj) => {
   let t = '';
   values.forEach((value, index) => {
     t += `
-      <tr>
+      <tr class="tr-modal">
         <td id="test" class="key-style">${keys[index]}</td>
         <td id="test" class="value-style">${value}</td>
       </tr>
@@ -144,7 +144,6 @@ containerHero.addEventListener('click', (event) => {
           </div>
           <div class="container-stats">
             <p>STATS</p>
-            
             <div class="container-table">
               <table>${fillTable(heroData[0].stats)}</table>
             </div>
@@ -161,6 +160,7 @@ const span = document.getElementsByClassName('close')[0];
 span.addEventListener('click', () => {
   modal.classList.replace('flex-style', 'hide');
   document.body.style.overflowY = 'scroll';
+  document.documentElement.style.overflow = 'scroll';
 });
 
 championSelect.addEventListener('change', (event) => {
