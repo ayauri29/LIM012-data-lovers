@@ -1,8 +1,3 @@
-// export const cloneData = (dataLol) => {
-//   const keys = Object.values(dataLol);
-//   return keys;
-// };
-
 export const searchHero = (data, name) => {
   const results = data.filter(dataRow => dataRow.name.toLowerCase().startsWith(name.toLowerCase()));
   return results;
@@ -31,8 +26,7 @@ export const sortAlphabet = (dataLol, value) => {
 export const dataChart = (dataLol, value) => {
   const tabla = [];
   for (let i = 0; i < dataLol.length; i += 1) {
-    // console.log(dataLol[i].info[value])
-    tabla.push([dataLol[i].name, `<img class="width" src="${dataLol[i].img}">`, dataLol[i].info[value]]);
+    tabla.push([dataLol[i].name, dataLol[i].title, `<img class="width" src="${dataLol[i].img}">`, dataLol[i].info[value]]);
   }
   return tabla;
 };

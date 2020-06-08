@@ -20,6 +20,7 @@ const searchInput = document.getElementById('search-name');
 const totalContainer = document.getElementById('total-container');
 const modal = document.getElementById('myModal');
 const modalContent = document.getElementById('modal-content');
+const buttons = document.getElementById('buttons');
 
 // Preparing data
 const dataLol = Object.values(data.data);
@@ -120,7 +121,7 @@ containerHero.addEventListener('click', (event) => {
   document.documentElement.style.overflow = 'hidden';
   document.body.style.overflow = 'hidden';
   const idHero = event.target.id;
-  if (idHero !== 'container-hero') {
+  if (idHero !== 'container-hero' && idHero !== 'no-results') {
     const heroData = dataLol.filter(dataHero => dataHero.key === idHero);
     modal.classList.replace('hide', 'flex-style');
     modalContent.innerHTML = `
@@ -143,7 +144,7 @@ containerHero.addEventListener('click', (event) => {
             </div>
           </div>
           <div class="container-stats">
-            <p>STATS</p>
+            <p class="stats-stl">STATS</p>
             <div class="container-table">
               <table>${fillTable(heroData[0].stats)}</table>
             </div>
@@ -160,7 +161,7 @@ const span = document.getElementsByClassName('close')[0];
 span.addEventListener('click', () => {
   modal.classList.replace('flex-style', 'hide');
   document.body.style.overflowY = 'scroll';
-  document.documentElement.style.overflow = 'scroll';
+  document.documentElement.style.overflow = 'visible';
 });
 
 championSelect.addEventListener('change', (event) => {
@@ -170,31 +171,36 @@ championSelect.addEventListener('change', (event) => {
   } else {
     dataFiltered = filterChampions(dataLol, event.target.value);
   }
+  searchInput.value = '';
   containerHero.innerHTML = createCards(dataFiltered);
-  totalContainer.innerHTML = `${event.target.value}: ${dataFiltered.length}`;
+  totalContainer.innerHTML = `<span>${event.target.value}</span>  <span class="total-span">[${dataFiltered.length}]</span>`;
 });
 
 orderSelect.addEventListener('change', (event) => {
   let dataSortered = [];
   if (championSelect.value !== '') {
     dataSortered = filterChampions(sortAlphabet(dataLol, event.target.value), championSelect.value);
+    totalContainer.innerHTML = `<span>Total</span>  <span class="total-span">[${dataSortered.length}]</span>`;
   } else {
     dataSortered = sortAlphabet(dataLol, event.target.value);
+    totalContainer.innerHTML = `<span>Total</span>  <span class="total-span">[${dataSortered.length}]</span>`;
   }
+  searchInput.value = '';
   containerHero.innerHTML = createCards(dataSortered);
-  totalContainer.innerHTML = `Total: ${dataSortered.length}`;
 });
 
-
-searchInput.addEventListener('click', () => {
-  championSelect.value = '';
-  orderSelect.value = '';
-  containerHero.innerHTML = createCards(dataLol);
-});
+/* Search by name */
 searchInput.addEventListener('input', (event) => {
   const resultHeroes = searchHero(dataLol, event.target.value);
-  containerHero.innerHTML = createCards(resultHeroes);
-  totalContainer.innerHTML = `Total: ${resultHeroes.length}`;
+  orderSelect.value = '';
+  championSelect.value = '';
+  if (resultHeroes.length > 0) {
+    containerHero.innerHTML = createCards(resultHeroes);
+    totalContainer.innerHTML = `<span>${event.target.value}</span>  <span class="total-span">[${resultHeroes.length}]</span>`;
+  } else {
+    totalContainer.innerHTML = `<p>No se encontraron resutados para '${event.target.value}'</p>`;
+    containerHero.innerHTML = '';
+  }
 });
 
 // Button back top
@@ -206,11 +212,9 @@ window.addEventListener('scroll', () => {
     up.classList.add('hide');
   }
 });
-
 up.addEventListener('click', () => {
   window.scrollTo(0, 0);
 });
-
 
 /* Navigation slidebar */
 const menu = document.querySelector('#menu');
@@ -245,12 +249,14 @@ oscurecer.addEventListener('click', () => {
   document.getElementsByTagName('html')[0].style.overflow = 'auto';
 });
 
+
 /* CHARTS */
 google.charts.load('current', { packages: ['table'] });
 
 const drawTable = (index) => {
   const dataTable = new google.visualization.DataTable();
   dataTable.addColumn('string', 'Name');
+  dataTable.addColumn('string', 'Title');
   dataTable.addColumn('string', 'Imagen');
   dataTable.addColumn('number', index);
 
@@ -262,18 +268,15 @@ const drawTable = (index) => {
     showRowNumber: true,
     width: '95%',
     height: 410,
-    sortColumn: 2,
+    sortColumn: 3,
     sortAscending: false,
   };
   const table = new google.visualization.Table(document.getElementById('chart'));
   table.draw(dataTable, options);
 };
 
-const buttons = document.getElementById('buttons');
-
 buttons.addEventListener('click', (event) => {
   if (event.target.id !== 'buttons') {
-    // drawTable(event.target.id);
     google.charts.setOnLoadCallback(drawTable(event.target.id));
   }
 });
